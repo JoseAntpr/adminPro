@@ -13,6 +13,8 @@ import { BreadcrumbsComponent } from './shared/breadcrumbs/breadcrumbs.component
 
 // Router
 import { RoutingModule } from './app.routes';
+import { PagesComponent } from './pages/pages.component';
+import { SignUpComponent } from './login/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { RoutingModule } from './app.routes';
     Graphics1Component,
     HeaderComponent,
     SidebarComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    PagesComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
