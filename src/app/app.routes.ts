@@ -10,15 +10,6 @@ import { PagesComponent } from './pages/pages.component';
 import { SignUpComponent } from './login/sign-up.component';
 
 const routes: Routes = [
-  {
-    path: '', component: PagesComponent,
-    children: [
-      { path: 'dashboard', component: DashboardComponent },
-      { path: 'progress', component: ProgressComponent },
-      { path: 'graphics1', component: Graphics1Component },
-      { path: '', pathMatch: 'full', redirectTo: '/dashboard' },
-    ]
-  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: SignUpComponent },
   { path: '**', component: Page404Component}
