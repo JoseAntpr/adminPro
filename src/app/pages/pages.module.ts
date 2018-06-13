@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
 
 import { PageRoutingModule } from './pages.routes';
 
@@ -12,6 +13,7 @@ import { PagesComponent } from './pages.component';
 
 // Temporal
 import { IncrementComponent } from '../components/increment/increment.component';
+import { DoughnutCharComponent } from '../components/doughnut-char/doughnut-char.component';
 
 
 
@@ -22,19 +24,22 @@ import { IncrementComponent } from '../components/increment/increment.component'
     ProgressComponent,
     Graphics1Component,
     PagesComponent,
-    IncrementComponent
+    IncrementComponent,
+    DoughnutCharComponent
   ],
   exports: [
     DashboardComponent,
     ProgressComponent,
     Graphics1Component,
     PagesComponent,
-    IncrementComponent
+    IncrementComponent,
+    DoughnutCharComponent
   ],
   imports: [
     SharedModule,
     PageRoutingModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
 })
 export class PagesModule { }
