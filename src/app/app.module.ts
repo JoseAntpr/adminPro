@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 // Modulos
 import { PagesModule } from './pages/pages.module';
@@ -12,8 +13,11 @@ import { SignUpComponent } from './login/sign-up.component';
 // Router
 import { RoutingModule } from './app.routes';
 
-// Servicios
-import { SettingsService } from './services/settings.service';
+
+// Services
+import { ServiceModule } from './services/service.module';
+
+
 
 
 
@@ -28,9 +32,10 @@ import { SettingsService } from './services/settings.service';
     BrowserModule,
     PagesModule,
     RoutingModule,
+    FormsModule,
+    ServiceModule
   ],
   providers: [
-    SettingsService
   ],
   bootstrap: [AppComponent]
 })
