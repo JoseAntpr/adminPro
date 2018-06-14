@@ -12,6 +12,9 @@ import { SignUpComponent } from './login/sign-up.component';
 // Router
 import { RoutingModule } from './app.routes';
 
+// Servicios
+import { SettingsService } from './services/settings.service';
+
 
 
 
@@ -26,7 +29,9 @@ import { RoutingModule } from './app.routes';
     PagesModule,
     RoutingModule,
   ],
-  providers: [],
+  providers: [
+    SettingsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

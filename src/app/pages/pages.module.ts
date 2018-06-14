@@ -10,10 +10,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graphics1Component } from './graphics1/graphics1.component';
 import { PagesComponent } from './pages.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 // Temporal
 import { IncrementComponent } from '../components/increment/increment.component';
 import { DoughnutCharComponent } from '../components/doughnut-char/doughnut-char.component';
+
 
 
 
@@ -25,7 +27,8 @@ import { DoughnutCharComponent } from '../components/doughnut-char/doughnut-char
     Graphics1Component,
     PagesComponent,
     IncrementComponent,
-    DoughnutCharComponent
+    DoughnutCharComponent,
+    AccountSettingsComponent
   ],
   exports: [
     DashboardComponent,
@@ -33,7 +36,8 @@ import { DoughnutCharComponent } from '../components/doughnut-char/doughnut-char
     Graphics1Component,
     PagesComponent,
     IncrementComponent,
-    DoughnutCharComponent
+    DoughnutCharComponent,
+    AccountSettingsComponent
   ],
   imports: [
     SharedModule,
