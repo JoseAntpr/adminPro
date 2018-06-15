@@ -15,6 +15,8 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 // Temporal
 import { IncrementComponent } from '../components/increment/increment.component';
 import { DoughnutCharComponent } from '../components/doughnut-char/doughnut-char.component';
+import { PromisesComponent } from './promises/promises.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 
@@ -28,7 +30,9 @@ import { DoughnutCharComponent } from '../components/doughnut-char/doughnut-char
     PagesComponent,
     IncrementComponent,
     DoughnutCharComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    PromisesComponent,
+    RxjsComponent
   ],
   exports: [
     DashboardComponent,
