@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import swal from 'sweetalert';
 import { UserService } from '../services/service.index';
 import { User } from '../models/user.model';
+import { Router } from '@angular/router';
 
 declare function init_plugins();
 
@@ -16,7 +17,10 @@ export class SignUpComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(public _userService: UserService) { }
+  constructor(
+    public _userService: UserService,
+    public router: Router
+  ) { }
 
   ngOnInit() {
     init_plugins();
@@ -60,7 +64,9 @@ export class SignUpComponent implements OnInit {
       this.form.value.password
     );
 
-    this._userService.createUser(user).subscribe( res => console.log(res));
+    this._userService.createUser(user).subscribe( res => {
+      this.router.navigate(['/login']);
+    });
   }
 
 }

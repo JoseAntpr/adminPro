@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { UserService } from '../services/service.index';
+import { User } from '../models/user.model';
 
 declare function init_plugins();
 
@@ -10,14 +13,37 @@ declare function init_plugins();
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public router: Router) { }
+  recuerdame = false;
+
+  constructor(
+    public router: Router,
+    public _userService: UserService
+  ) { }
 
   ngOnInit() {
     init_plugins();
   }
 
-  login() {
-    this.router.navigate(['/dashboard']);
+  login(form: NgForm) {
+
+
+    if ( form.invalid) {
+      return;
+    }
+
+    console.log(form.value);
+
+    const user = new User(
+      null,
+      form.value.email,
+      form.value.password
+    );
+
+    this._userService.login(user, form.value.recuerdame).subscribe( resp => {
+      console.log(resp);
+      this.router.navigate(['/dashboard']);
+    });
+
   }
 
 }
