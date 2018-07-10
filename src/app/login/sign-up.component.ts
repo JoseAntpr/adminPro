@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import swal from 'sweetalert';
+import { UserService } from '../services/service.index';
+import { User } from '../models/user.model';
 
 declare function init_plugins();
 
@@ -14,7 +16,7 @@ export class SignUpComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor() { }
+  constructor(public _userService: UserService) { }
 
   ngOnInit() {
     init_plugins();
@@ -51,6 +53,14 @@ export class SignUpComponent implements OnInit {
       swal('Importante', 'Debe aceptar las conciones', 'warning');
       return;
     }
+
+    const user = new User(
+      this.form.value.name,
+      this.form.value.email,
+      this.form.value.password
+    );
+
+    this._userService.createUser(user).subscribe( res => console.log(res));
   }
 
 }
