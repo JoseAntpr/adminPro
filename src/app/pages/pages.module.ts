@@ -12,11 +12,15 @@ import { Graphics1Component } from './graphics1/graphics1.component';
 import { PagesComponent } from './pages.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
+// Pipes Module
+import { PipesModule } from '../pipes/pipes.module';
+
 // Temporal
 import { IncrementComponent } from '../components/increment/increment.component';
 import { DoughnutCharComponent } from '../components/doughnut-char/doughnut-char.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+
 
 
 
@@ -47,7 +51,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     SharedModule,
     PageRoutingModule,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    PipesModule
   ],
 })
 export class PagesModule { }
