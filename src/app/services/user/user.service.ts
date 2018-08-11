@@ -95,4 +95,11 @@ export class UserService {
         })
       );
   }
+
+  updateUser( user: User) {
+    const url = URL_SERVICE + '/user/' + user._id + '?token=' + this.token;
+    console.log(url);
+
+    return this.http.put( url, user );
+  }
 }
