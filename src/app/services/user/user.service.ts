@@ -4,6 +4,8 @@ import { User } from '../../models/user.model';
 import { URL_SERVICE } from '../../config/config';
 import { map } from 'rxjs/operators';
 
+import { Router } from '@angular/router';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,8 +15,25 @@ export class UserService {
   token: string;
 
   constructor(
-    public http: HttpClient
-  ) {  }
+    public http: HttpClient,
+    public router: Router
+  ) {
+    this.loadStorage();
+   }
+
+  isAuthenticated () {
+    return ( this.token.length > 5 ) ? true : false;
+  }
+
+  loadStorage() {
+    if (localStorage.getItem('token')) {
+      this.token = localStorage.getItem('token');
+      this.user = JSON.parse( localStorage.getItem('user'));
+    } else {
+      this.token = '';
+      this.user = null;
+    }
+  }
 
   saveStorage( id: string, token: string, user: User) {
     localStorage.setItem('id', id);
@@ -23,6 +42,14 @@ export class UserService {
 
     this.user = user;
     this.token = token;
+  }
+
+  logout() {
+    this.user = null;
+    this.token = '';
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.router.navigate(['/login']);
   }
 
   loginGoogle ( token: string ) {
