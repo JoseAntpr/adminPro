@@ -20,6 +20,7 @@ import { IncrementComponent } from '../components/increment/increment.component'
 import { DoughnutCharComponent } from '../components/doughnut-char/doughnut-char.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -36,7 +37,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     DoughnutCharComponent,
     AccountSettingsComponent,
     PromisesComponent,
-    RxjsComponent
+    RxjsComponent,
+    ProfileComponent
   ],
   exports: [
     DashboardComponent,
