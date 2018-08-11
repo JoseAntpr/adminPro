@@ -20,7 +20,7 @@
               <div class="input-group-addon">
                 <i class="ti-email"></i>
               </div>
-              <input [ngModel]="user.email" name="email" type="email" class="form-control" placeholder="Correo de usuario" required>
+              <input [ngModel]="user.email" [disabled]="user.google" name="email" type="email" class="form-control" placeholder="Correo de usuario" required>
             </div>
           </div>
           <button type="submit" class="btn btn-success waves-effect btn-block waves-light m-r-10">

@@ -100,6 +100,13 @@ export class UserService {
     const url = URL_SERVICE + '/user/' + user._id + '?token=' + this.token;
     console.log(url);
 
-    return this.http.put( url, user );
+    return this.http.put( url, user )
+              .pipe(
+                map( (resp: any) => {
+                  this.saveStorage( resp.user._id, this.token, resp.user);
+                  swal('Usuario actualizado', resp.user.name, 'success');
+                  return true;
+                })
+              );
   }
 }

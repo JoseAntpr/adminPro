@@ -19,12 +19,12 @@ export class ProfileComponent implements OnInit {
 
   save( user: User ) {
     this.user.name = user.name;
-    this.user.email = user.email;
+    if ( !this.user.google ) {
+      this.user.email = user.email;
+    }
 
     this.userService.updateUser(this.user)
-          .subscribe( resp => {
-            console.log(resp);
-          });
+          .subscribe();
   }
 
 }
