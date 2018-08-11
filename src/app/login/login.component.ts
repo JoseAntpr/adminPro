@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
     );
 
     this._userService.login(user, form.value.recuerdame).subscribe( resp => {
-      console.log(resp);
       this.router.navigate(['/dashboard']);
     });
 

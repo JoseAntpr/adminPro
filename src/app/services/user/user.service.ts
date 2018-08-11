@@ -18,7 +18,16 @@ export class UserService {
   login( user: User, recuerdame: boolean = false ) {
     const url = URL_SERVICE + '/login';
 
-    return this.http.post( url, user);
+    return this.http.post( url, user)
+      .pipe(
+        map( (resp: any ) => {
+          localStorage.setItem('id', resp.id);
+          localStorage.setItem('token', resp.token);
+          localStorage.setItem('user', JSON.stringify(resp.token));
+
+          return true;
+        })
+      );
   }
 
   createUser( user: User ) {
