@@ -18,6 +18,12 @@ export class UserService {
   login( user: User, recuerdame: boolean = false ) {
     const url = URL_SERVICE + '/login';
 
+    if (recuerdame) {
+      localStorage.setItem('email', user.email );
+    } else {
+      localStorage.removeItem('email');
+    }
+
     return this.http.post( url, user)
       .pipe(
         map( (resp: any ) => {
