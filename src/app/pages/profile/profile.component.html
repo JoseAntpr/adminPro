@@ -33,10 +33,11 @@
   </div>
   <div class="col-lg-5">
     <div class="card">
-      <div class="card-body">
+      <div class="card-body" align="center">
         <h4 class="card-title">Fotografia del usuario</h4>
         <h6 class="card-subtitle"> nombre de usuario </h6>
-        <img src="">
+        <img *ngIf="!temporalImage" [src]="user.img | image" class="w150">
+        <img *ngIf="temporalImage" [src]="temporalImage" class="w150">
         <input (change)="imageSelection( $event.target.files[0] )" type="file">
         <br><br>
         <button (click)="changeImage()" [disabled]="!imageUploaded" type="submit" class="btn btn-success waves-effect btn-block waves-light m-r-10">

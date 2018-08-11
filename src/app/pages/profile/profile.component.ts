@@ -11,6 +11,7 @@ export class ProfileComponent implements OnInit {
 
   user: User;
   imageUploaded: File;
+  temporalImage: string;
 
   constructor( public userService: UserService) { }
 
@@ -33,7 +34,18 @@ export class ProfileComponent implements OnInit {
       this.imageUploaded = null;
       return;
     }
+    console.log(file);
+    if ( file.type.indexOf('image') < 0 ) {
+      swal('Sólo imágenes', 'El arhivo seleccionado no es una image', 'error');
+      this.imageUploaded = null;
+      return;
+    }
     this.imageUploaded = file;
+
+    const reader = new FileReader();
+    const urlImageTemp = reader.readAsDataURL( file );
+
+    reader.onloadend = () => this.temporalImage = reader.result;
   }
 
   changeImage() {

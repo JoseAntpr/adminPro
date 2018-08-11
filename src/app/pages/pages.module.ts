@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
+import { CommonModule } from '@angular/common';
 
 import { PageRoutingModule } from './pages.routes';
 
@@ -21,6 +22,7 @@ import { DoughnutCharComponent } from '../components/doughnut-char/doughnut-char
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
+
 
 
 
@@ -50,6 +52,7 @@ import { ProfileComponent } from './profile/profile.component';
     AccountSettingsComponent
   ],
   imports: [
+    CommonModule,
     SharedModule,
     PageRoutingModule,
     FormsModule,
