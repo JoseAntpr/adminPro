@@ -10,6 +10,7 @@ import { UserService } from '../../services/service.index';
 export class ProfileComponent implements OnInit {
 
   user: User;
+  imageUploaded: File;
 
   constructor( public userService: UserService) { }
 
@@ -25,6 +26,18 @@ export class ProfileComponent implements OnInit {
 
     this.userService.updateUser(this.user)
           .subscribe();
+  }
+
+  imageSelection( file ) {
+    if ( !file ) {
+      this.imageUploaded = null;
+      return;
+    }
+    this.imageUploaded = file;
+  }
+
+  changeImage() {
+    this.userService.changeImage( this.imageUploaded, this.user._id);
   }
 
 }

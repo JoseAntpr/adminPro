@@ -8,7 +8,7 @@ export class ImagePipe implements PipeTransform {
 
   transform(img: string, tipo: string = 'user'): any {
 
-    let url = URL_SERVICE + '/img';
+    let url = URL_SERVICE + '/images';
 
     if ( !img ) {
       return url + '/usuarios/xxx';
@@ -19,13 +19,13 @@ export class ImagePipe implements PipeTransform {
 
     switch ( tipo ) {
       case 'user':
-       url += 'users/' + img;
+       url += '/users/' + img;
        break;
       case 'doctor':
-        url += 'users/' + img;
+        url += '/doctors/' + img;
         break;
       case 'hospital':
-        url += 'users/' + img;
+        url += '/hospitals/' + img;
         break;
       default:
         console.log('Tipo de imagen no exite');
