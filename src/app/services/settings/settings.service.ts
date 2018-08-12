@@ -16,16 +16,13 @@ export class SettingsService {
   loadSettings() {
     if (localStorage.getItem('settings')) {
       this.settings = JSON.parse (localStorage.getItem('settings'));
-      console.log(' Cargado de ajustes');
       this.applyTheme(this.settings.theme);
     } else {
-      console.log('Cargando tema por defecto');
       this.applyTheme(this.settings.theme);
     }
   }
 
   guardarSettings() {
-    console.log('Guardado en el localStorage');
     localStorage.setItem('settings', JSON.stringify( this.settings ));
   }
 

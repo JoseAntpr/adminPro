@@ -16,7 +16,6 @@ export class AuthGuard implements CanActivate {
   canActivate(): boolean {
 
     if ( this._userService.isAuthenticated() ) {
-      console.log('Paso el guard');
       return true;
     } else {
       console.log('Bloqueado por guard');
