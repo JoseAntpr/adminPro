@@ -124,4 +124,10 @@ export class UserService {
               console.log(resp);
             });
   }
+
+  loadUsers( next: number = 0 ) {
+    const url = URL_SERVICE + '/user?next=' + next;
+
+    return this.http.get( url );
+  }
 }
