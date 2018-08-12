@@ -130,4 +130,13 @@ export class UserService {
 
     return this.http.get( url );
   }
+
+  searchUsers( term: string ) {
+    const url = URL_SERVICE + '/search/collection/users/' + term;
+
+    return this.http.get( url )
+            .pipe(
+              map((resp: any) => resp.users)
+            );
+  }
 }

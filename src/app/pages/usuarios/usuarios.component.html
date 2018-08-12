@@ -2,13 +2,13 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <input #input type="text" class="form-control" placeholder="Buscar usuario...">
+        <input #input (keyup)="searchUser( input.value )" type="text" class="form-control" placeholder="Buscar usuario...">
       </div>
     </div>
   </div>
 </div>
 
-<div class="row animated fadeIn">
+<div class="row animated fadeIn" *ngIf="loading">
   <div class="col-12">
     <div class="alert alert-warning text-center">
       <strong>Cargando</strong>
@@ -19,14 +19,14 @@
   </div>
 </div>
 
-<div class="row animated fadeIn">
+<div class="row animated fadeIn" *ngIf="!loading">
   <div class="col-12">
     <div class="card">
       <div class="card-body">
           <h3 class="card-title">Usuarios registrados (<small> {{ totalUsers }} </small>)</h3>
             <table class="table table-hover">
               <thead>
-                <tr>
+                <tr class="w-70">
                   <th>Imagen</th>
                   <th>Correo</th>
                   <th>Nombre</th>
@@ -38,6 +38,7 @@
               <tbody>
                 <tr *ngFor="let user of users">
                   <td>
+                    <img [src]=" user.img | image" class="img-50 img-circle">
                   </td>
                   <td>
                     {{ user.email}}
@@ -49,8 +50,8 @@
                     {{ user.role }}
                   </td>
                   <td>
-                    <label class="label label-danger">Google</label>
-                    <label class="label label-info">Normal</label>
+                    <label *ngIf="user.google" class="label label-danger">Google</label>
+                    <label *ngIf="!user.google" class="label label-info">Normal</label>
                   </td>
                   <td>
                     <button class="btn btn-primary mr-2">
