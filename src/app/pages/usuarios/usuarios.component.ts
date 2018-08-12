@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/service.index';
 
+declare var swal: any;
+
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -29,6 +31,7 @@ export class UsuariosComponent implements OnInit {
           .subscribe( (resp: any) => {
             this.totalUsers = resp.total;
             this.users = resp.users;
+            console.log(this.users);
             this.loading = false;
           });
   }
@@ -59,6 +62,35 @@ export class UsuariosComponent implements OnInit {
           this.users = users;
           this.loading = false;
         });
+  }
+
+  deleteUser(user: User) {
+    if ( user._id === this.userService.user._id ) {
+      swal('No puede borrar usuario', 'no se puede borrar así mismo', 'error');
+      return;
+    }
+
+    swal({
+      title: '¿Esta seguro?',
+      text: 'Esta a punto de borrar a ' + user.name,
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    })
+    .then( willDelete => {
+      if ( willDelete ) {
+        this.userService.deleteUser( user._id )
+              .subscribe( resp => {
+                this.next = 0;
+                this.loadUsers();
+              });
+      }
+    });
+  }
+
+  saveUser( user: User) {
+    this.userService.updateUser( user )
+          .subscribe();
   }
 
 

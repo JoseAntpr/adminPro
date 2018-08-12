@@ -105,7 +105,10 @@ export class UserService {
     return this.http.put( url, user )
               .pipe(
                 map( (resp: any) => {
-                  this.saveStorage( resp.user._id, this.token, resp.user);
+                  if ( user._id === this.user._id ) {
+                    this.saveStorage( resp.user._id, this.token, resp.user);
+
+                  }
                   swal('Usuario actualizado', resp.user.name, 'success');
                   return true;
                 })
@@ -138,5 +141,17 @@ export class UserService {
             .pipe(
               map((resp: any) => resp.users)
             );
+  }
+
+  deleteUser ( id: string ) {
+    const url = URL_SERVICE + '/user/' + id + '?token=' + this.token;
+
+    return this.http.delete( url )
+              .pipe(
+                map( resp => {
+                  swal('Usuario borrado', 'El usuario a sido eliminado correctamente', 'success');
+                  return true;
+                })
+              );
   }
 }
