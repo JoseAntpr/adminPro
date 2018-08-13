@@ -9,7 +9,6 @@ import { ModalUploadService } from './modal-upload.service';
 })
 export class ModalUploadComponent implements OnInit {
 
-  hide = '';
   imageUploaded: File;
   temporalImage: string;
 
@@ -41,7 +40,20 @@ export class ModalUploadComponent implements OnInit {
   }
 
   uploadImage() {
-    console.log('Subiendo imagen');
+    this.uploadFileService.uploadFile( this.imageUploaded, this.modalUploadService.type, this.modalUploadService.id)
+        .then(resp => {
+          this.modalUploadService.notificacion.emit( resp );
+          this.hideModal();
+        })
+        .catch( err => {
+          console.log('Error en la carga');
+        });
+  }
+
+  hideModal() {
+    this.imageUploaded = null;
+    this.temporalImage = null;
+    this.modalUploadService.hideModal();
   }
 
 }

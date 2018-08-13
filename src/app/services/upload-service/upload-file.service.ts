@@ -30,8 +30,6 @@ export class UploadFileService {
 
       const url = URL_SERVICE + '/upload/' + tipo + '/' + id;
 
-      console.log(url);
-
       xhr.open('PUT', url, true);
       xhr.send( formData );
 

@@ -38,7 +38,7 @@
               <tbody>
                 <tr *ngFor="let user of users">
                   <td>
-                    <img [src]=" user.img | image" class="img-50 img-circle">
+                    <img (click)="showModal( user._id )" [src]=" user.img | image" class="img-50 img-circle pointer">
                   </td>
                   <td>
                     {{ user.email}}

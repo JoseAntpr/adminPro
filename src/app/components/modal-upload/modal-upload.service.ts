@@ -6,7 +6,7 @@ export class ModalUploadService {
   public type: string;
   public id: string;
 
-  public hide = '';
+  public hide = 'hide';
 
   public notificacion = new EventEmitter<any>();
 
@@ -15,10 +15,14 @@ export class ModalUploadService {
   }
 
   hideModal() {
-
+    this.hide = 'hide';
+    this.type = null;
+    this.id = null;
   }
 
-  showModal() {
-    
+  showModal( type: string, id: string) {
+    this.hide = '';
+    this.id = id;
+    this.type = type;
   }
 }
