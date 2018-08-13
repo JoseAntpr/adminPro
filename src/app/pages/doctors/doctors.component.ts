@@ -24,16 +24,17 @@ export class DoctorsComponent implements OnInit {
           .subscribe( doctors => this.doctors = doctors);
   }
 
-  createDoctor() {
-
-  }
   searchMedico( term: string ) {
 
+    if ( term.length < 0 ) {
+      this.loadDoctors();
+      return;
+    }
+    this.doctorService.searchDoctors( term )
+          .subscribe( doctors => this.doctors = doctors);
+
   }
 
-  saveDoctor( doctor: Medico ) {
-
-  }
 
   deleteDoctor( doctor: Medico) {
 

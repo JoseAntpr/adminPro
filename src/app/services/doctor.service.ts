@@ -23,4 +23,13 @@ export class DoctorService {
                 })
               );
   }
+
+  searchDoctors( term: string ) {
+    const url = URL_SERVICE + '/search/collection/doctors/' + term;
+
+    return this.http.get( url )
+            .pipe(
+              map((resp: any) => resp.doctors)
+            );
+  }
 }
