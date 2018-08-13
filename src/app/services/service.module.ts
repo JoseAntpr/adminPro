@@ -10,7 +10,8 @@ import {
   UserService,
   AuthGuard,
   UploadFileService,
-  HospitalService
+  HospitalService,
+  DoctorService
 } from './service.index';
 
 
@@ -28,7 +29,8 @@ import {
     AuthGuard,
     UploadFileService,
     ModalUploadService,
-    HospitalService
+    HospitalService,
+    DoctorService
   ]
 })
 export class ServiceModule { }

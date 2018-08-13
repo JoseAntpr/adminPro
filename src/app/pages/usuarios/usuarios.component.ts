@@ -35,7 +35,6 @@ export class UsuariosComponent implements OnInit {
           .subscribe( (resp: any) => {
             this.totalUsers = resp.total;
             this.users = resp.users;
-            console.log(this.users);
             this.loading = false;
           });
   }

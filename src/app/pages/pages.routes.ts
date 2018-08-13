@@ -12,6 +12,8 @@ import { AuthGuard } from '../services/service.index';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalsComponent } from './hospitals/hospitals.component';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { DoctorComponent } from './doctors/doctor.component';
 
 
 
@@ -32,6 +34,8 @@ const pagesRoutes: Routes = [
       // Mantenimientos
       { path: 'usuarios', component: UsuariosComponent, data: {titulo: 'Mantenimiento de usuario'}},
       { path: 'hospitals', component: HospitalsComponent, data: {titulo: 'Mantenimiento de hospitales'}},
+      { path: 'doctors', component: DoctorsComponent, data: {titulo: 'Mantenimiento de medicos'}},
+      { path: 'doctor/:id', component: DoctorComponent, data: {titulo: 'Actualizar médico'}},
       { path: '', pathMatch: 'full', redirectTo: '/dashboard' },
     ]
   },
