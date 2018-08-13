@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Medico } from '../../models/medico.model';
+import { DoctorService } from '../../services/service.index';
 
 @Component({
   selector: 'app-doctors',
@@ -7,9 +9,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoctorsComponent implements OnInit {
 
-  constructor() { }
+  doctors: Medico[] = [];
+
+  constructor(
+    public doctorService: DoctorService
+  ) { }
 
   ngOnInit() {
+    this.loadDoctors();
   }
+
+  loadDoctors() {
+    this.doctorService.loadDoctors()
+          .subscribe( doctors => this.doctors = doctors);
+  }
+
+  createDoctor() {
+
+  }
+  searchMedico( term: string ) {
+
+  }
+
+  saveDoctor( doctor: Medico ) {
+
+  }
+
+  deleteDoctor( doctor: Medico) {
+
+  }
+
+
 
 }
