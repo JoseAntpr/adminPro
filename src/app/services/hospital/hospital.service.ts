@@ -69,6 +69,7 @@ export class HospitalService {
     return this.http.put( url, hospital)
             .pipe(
               map( (resp: any) => {
+                swal('Hospital Actualizado', 'El hospital ' + hospital.name + ' fue actualizado correctamente', 'success');
                 return resp.hospital;
               })
             );

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Hospital } from '../../models/hospital.model';
 import { HospitalService } from '../../services/service.index';
+import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
+
+declare var swal;
 
 @Component({
   selector: 'app-hospitals',
@@ -11,10 +14,15 @@ export class HospitalsComponent implements OnInit {
 
   hospitals: Hospital[] = [];
 
-  constructor(public hospitalService: HospitalService) { }
+  constructor(
+    public hospitalService: HospitalService,
+    public modalUploadService: ModalUploadService
+  ) { }
 
   ngOnInit() {
     this.loadHospitals();
+    this.modalUploadService.notificacion
+        .subscribe( () => this.loadHospitals());
   }
 
   loadHospitals() {
@@ -32,8 +40,27 @@ export class HospitalsComponent implements OnInit {
           .subscribe( hospitals => this.hospitals = hospitals );
   }
 
-  saveHospital( hospital: Hospital) {
+  createHospital() {
+    swal({
+      title: 'Crear hospital',
+      text: 'Ingrese el nombre del hospital',
+      content: 'input',
+      icon: 'info',
+      buttons: true,
+      dangerMode: true
+    }).then( valor => {
+      if ( !valor || valor.length === 0) {
+        return;
+      }
 
+      this.hospitalService.createHospital( valor )
+          .subscribe(() => this.loadHospitals());
+    });
+  }
+
+  saveHospital( hospital: Hospital) {
+    this.hospitalService.updateHospital( hospital )
+          .subscribe( );
   }
 
   deleteHospital( hospital: Hospital ) {
@@ -41,6 +68,10 @@ export class HospitalsComponent implements OnInit {
           .subscribe( () => {
             this.loadHospitals();
           });
+  }
+
+  updateImg( hospital: Hospital ) {
+    this.modalUploadService.showModal('hospitals', hospital._id);
   }
 
 }
