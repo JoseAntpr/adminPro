@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICE } from '../config/config';
 import { map } from 'rxjs/operators';
+import { UserService } from './user/user.service';
 
 @Injectable()
 export class DoctorService {
@@ -9,7 +10,8 @@ export class DoctorService {
   totalDoctors = 0;
 
   constructor(
-    public http: HttpClient
+    public http: HttpClient,
+    public userService: UserService
   ) { }
 
   loadDoctors() {
@@ -31,5 +33,17 @@ export class DoctorService {
             .pipe(
               map((resp: any) => resp.doctors)
             );
+  }
+
+  deleteDoctor( id: string ) {
+    const url = URL_SERVICE + '/doctor/' + id + '?token=' + this.userService.token;
+
+    return this.http.delete(url)
+              .pipe(
+                map( resp => {
+                  swal('Doctor borrado', 'Médico borrado con éxito', 'success');
+                  return true;
+                })
+              );
   }
 }

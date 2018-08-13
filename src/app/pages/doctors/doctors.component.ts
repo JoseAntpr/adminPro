@@ -37,7 +37,9 @@ export class DoctorsComponent implements OnInit {
 
 
   deleteDoctor( doctor: Medico) {
-
+    this.doctorService.deleteDoctor(doctor._id).subscribe(
+      () => this.loadDoctors();
+    );
   }
 
 
