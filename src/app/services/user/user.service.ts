@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user.model';
 import { URL_SERVICE } from '../../config/config';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 
 import { Router } from '@angular/router';
 import { UploadFileService } from '../upload-service/upload-file.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -89,6 +90,11 @@ export class UserService {
           this.saveStorage(resp.id, resp.token, resp.user, resp.menu);
 
           return true;
+        }),
+        catchError( err => {
+          console.log(err);
+          swal('Error en el login', err.error.mensaje, 'error');
+          return Observable.throw( err );
         })
       );
   }
@@ -101,6 +107,11 @@ export class UserService {
         map( (resp: any) => {
           swal('Usuario creado', resp.user.email, 'success');
           return resp.user;
+        }),
+        catchError( err => {
+          console.log(err);
+          swal(err.error.mensaje, err.error.errors.message, 'error');
+          return Observable.throw(err);
         })
       );
   }
