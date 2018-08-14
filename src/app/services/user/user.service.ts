@@ -14,6 +14,7 @@ export class UserService {
 
   user: User;
   token: string;
+  menu: any = [];
 
   constructor(
     public http: HttpClient,
@@ -31,24 +32,29 @@ export class UserService {
     if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
       this.user = JSON.parse( localStorage.getItem('user'));
+      this.menu = JSON.parse( localStorage.getItem('menu'));
     } else {
       this.token = '';
       this.user = null;
+      this.menu = [];
     }
   }
 
-  saveStorage( id: string, token: string, user: User) {
+  saveStorage( id: string, token: string, user: User, menu: any) {
     localStorage.setItem('id', id);
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('menu', JSON.stringify(menu));
 
     this.user = user;
     this.token = token;
+    this.menu = menu;
   }
 
   logout() {
     this.user = null;
     this.token = '';
+    this.menu = [];
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.router.navigate(['/login']);
@@ -60,7 +66,8 @@ export class UserService {
     return this.http.post(url, { token })
             .pipe(
               map( (resp: any) => {
-                this.saveStorage(resp.id, resp.token, resp.user);
+                console.log(resp);
+                this.saveStorage(resp.id, resp.token, resp.user, resp.menu);
                 return true;
               })
             );
@@ -79,7 +86,7 @@ export class UserService {
       .pipe(
         map( (resp: any ) => {
 
-          this.saveStorage(resp.id, resp.token, resp.user);
+          this.saveStorage(resp.id, resp.token, resp.user, resp.menu);
 
           return true;
         })
@@ -106,7 +113,7 @@ export class UserService {
               .pipe(
                 map( (resp: any) => {
                   if ( user._id === this.user._id ) {
-                    this.saveStorage( resp.user._id, this.token, resp.user);
+                    this.saveStorage( resp.user._id, this.token, resp.user, this.menu);
 
                   }
                   swal('Usuario actualizado', resp.user.name, 'success');
@@ -121,7 +128,7 @@ export class UserService {
               this.user.img = resp.user.img;
               swal('Imagen actualizada', this.user.name, 'success');
 
-              this.saveStorage(id, this.token, this.user);
+              this.saveStorage(id, this.token, this.user, this.menu);
             })
             .catch( resp => {
               console.log(resp);
