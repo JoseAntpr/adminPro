@@ -4,7 +4,7 @@ import { HospitalService } from '../../services/hospital/hospital.service';
 import { Hospital } from '../../models/hospital.model';
 import { Medico } from '../../models/medico.model';
 import { DoctorService } from '../../services/doctor.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-doctor',
@@ -20,12 +20,30 @@ export class DoctorComponent implements OnInit {
   constructor(
     public hospitalService: HospitalService,
     public doctorService: DoctorService,
-    public router: Router
-  ) { }
+    public router: Router,
+    public activatedRoute: ActivatedRoute
+  ) {
+    this.activatedRoute.params.subscribe( params => {
+      const id = params['id'];
+
+      if ( id !== 'new') {
+        this.loadDoctor( id );
+      }
+    });
+  }
 
   ngOnInit() {
     this.hospitalService.loadHospitals()
           .subscribe( hospitals => this.hospitals = hospitals);
+  }
+
+  loadDoctor( id: string ) {
+    this.doctorService.getDoctor(id).subscribe( doctor => {
+      this.doctor = doctor;
+      this.doctor.hospital = doctor.hospital._id;
+      this.changeHospital( this.doctor.hospital );
+
+    });
   }
 
   saveDoctor( f: NgForm) {

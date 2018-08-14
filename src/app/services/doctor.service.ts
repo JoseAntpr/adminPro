@@ -27,6 +27,15 @@ export class DoctorService {
               );
   }
 
+  getDoctor (id: string) {
+    const url = URL_SERVICE + '/doctor/' + id;
+
+    return this.http.get(url)
+            .pipe(
+              map( (resp: any) => resp.doctor)
+            );
+  }
+
   searchDoctors( term: string ) {
     const url = URL_SERVICE + '/search/collection/doctors/' + term;
 
