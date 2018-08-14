@@ -9,6 +9,8 @@ declare function init_plugins();
 })
 export class Page404Component implements OnInit {
 
+  anio: number = new Date().getFullYear();
+
   constructor() { }
 
   ngOnInit() {
