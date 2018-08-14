@@ -1,3 +1,69 @@
-<p>
-  busqueda works!
-</p>
+<div class="row">
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Usuarios</h4>
+        <table class="table table-hover" *ngIf="users">
+          <tbody>
+            <tr *ngFor="let user of users"
+                  [routerLink]="['/usuarios']"
+                  class="pointer">
+              <td>
+                <img [src]="user.img | image:'user'" class="img-fluid img-thumbnail">
+              </td>
+              <td>{{user.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="alert alert-info" *ngIf="users.length === 0">
+            No hay registros
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Hospitales</h4>
+        <table class="table table-hover" *ngIf="hospitals">
+          <tbody>
+            <tr *ngFor="let hospital of hospitals"
+                [routerLink]="['/hospitals']">
+              <td>
+                  <img [src]="hospital.img | image:'hospital'" class="img-fluid img-thumbnail">
+              </td>
+              <td>
+                {{ hospital.name }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="alert alert-info" *ngIf="hospitals.length === 0">
+            No hay registros
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Medicos</h4>
+        <table class="table table-hover" *ngIf="doctors">
+          <tbody>
+            <tr *ngFor="let doctor of doctors"
+                [routerLink]="['/doctor', doctor._id]"
+                class="pointer">
+              <td>
+                <img [src]="doctor.img | image:'doctor'" class="img-fluid img-thumbnail">
+              </td>
+              <td>{{ doctor.name }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="alert alert-info" *ngIf="doctors.length === 0">
+          No hay registros
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
