@@ -5,6 +5,7 @@ import { Hospital } from '../../models/hospital.model';
 import { Medico } from '../../models/medico.model';
 import { DoctorService } from '../../services/doctor.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ModalUploadService } from '../../components/modal-upload/modal-upload.service';
 
 @Component({
   selector: 'app-doctor',
@@ -21,7 +22,8 @@ export class DoctorComponent implements OnInit {
     public hospitalService: HospitalService,
     public doctorService: DoctorService,
     public router: Router,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    public modalUploadService: ModalUploadService
   ) {
     this.activatedRoute.params.subscribe( params => {
       const id = params['id'];
@@ -35,6 +37,10 @@ export class DoctorComponent implements OnInit {
   ngOnInit() {
     this.hospitalService.loadHospitals()
           .subscribe( hospitals => this.hospitals = hospitals);
+    this.modalUploadService.notificacion
+          .subscribe( resp => {
+            this.doctor.img = resp.doctor.img;
+          });
   }
 
   loadDoctor( id: string ) {
@@ -66,6 +72,10 @@ export class DoctorComponent implements OnInit {
         this.hospital = hospital;
       }
     );
+  }
+
+  changeImg() {
+    this.modalUploadService.showModal('doctors', this.doctor._id);
   }
 
 }
