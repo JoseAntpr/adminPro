@@ -16,7 +16,7 @@ import { RoutingModule } from './app.routes';
 
 // Services
 import { ServiceModule } from './services/service.module';
-import { DoctorComponent } from './pages/doctors/doctor.component';
+
 
 
 @NgModule({
@@ -24,7 +24,6 @@ import { DoctorComponent } from './pages/doctors/doctor.component';
     AppComponent,
     LoginComponent,
     SignUpComponent,
-    DoctorComponent,
   ],
   imports: [
     BrowserModule,
