@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { URL_SERVICE } from '../config/config';
 import { map } from 'rxjs/operators';
 import { UserService } from './user/user.service';
+import { Medico } from '../models/medico.model';
 
 @Injectable()
 export class DoctorService {
@@ -45,5 +46,16 @@ export class DoctorService {
                   return true;
                 })
               );
+  }
+
+  saveDoctor( doctor: Medico ) {
+    const url = URL_SERVICE + '/doctor?token=' + this.userService.token;
+    return this.http.post(  url, doctor )
+          .pipe(
+            map( (resp: any) => {
+              swal('Medico creado', doctor.name, 'success');
+              return resp.doctor;
+            })
+          );
   }
 }
