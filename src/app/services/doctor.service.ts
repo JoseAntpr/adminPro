@@ -58,13 +58,34 @@ export class DoctorService {
   }
 
   saveDoctor( doctor: Medico ) {
-    const url = URL_SERVICE + '/doctor?token=' + this.userService.token;
-    return this.http.post(  url, doctor )
+    let url = URL_SERVICE + '/doctor';
+
+    if ( doctor._id ) {
+
+      url += '/' + doctor._id;
+      url += '?token=' + this.userService.token;
+
+      return this.http.put( url, doctor )
+                .pipe(
+                  map( (resp: any) => {
+                    swal('Medico Actualizado', doctor.name, 'success');
+                    return resp.doctor;
+                  })
+                );
+
+    } else {
+
+      url += '?token=' + this.userService.token;
+
+      return this.http.post(  url, doctor )
           .pipe(
             map( (resp: any) => {
               swal('Medico creado', doctor.name, 'success');
               return resp.doctor;
             })
           );
+
+    }
+    
   }
 }

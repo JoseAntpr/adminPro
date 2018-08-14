@@ -59,6 +59,7 @@ export class DoctorComponent implements OnInit {
 
     this.doctorService.saveDoctor( this.doctor )
           .subscribe( doctor => {
+            console.log(doctor);
             this.doctor._id = doctor._id;
             this.router.navigate(['/doctor', this.doctor._id]);
           });

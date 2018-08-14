@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-6">
     <div class="card card-body">
-      <h3 class="box-title m-b-0">Médico: NOMBRE MEDICO</h3>
+      <h3 class="box-title m-b-0">Médico: {{ doctor.name }}</h3>
       <div class="row">
         <div class="col-sm-12 col-xs-12">
           <form #DoctorForm="ngForm" ngNativeValidate (ngSubmit)="saveDoctor( DoctorForm )">
