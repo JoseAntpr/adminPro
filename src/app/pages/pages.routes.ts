@@ -8,7 +8,7 @@ import { Graphics1Component } from './graphics1/graphics1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
-import { AuthGuard, AdminGuard } from '../services/service.index';
+import { AuthGuard, AdminGuard, VerifyTokenGuard } from '../services/service.index';
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalsComponent } from './hospitals/hospitals.component';
@@ -19,7 +19,12 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 
 
 const pagesRoutes: Routes = [
-    { path: 'dashboard', component: DashboardComponent, data: {titulo: 'Dashboard'} },
+    {
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [VerifyTokenGuard],
+        data: {titulo: 'Dashboard'},
+    },
     { path: 'progress', component: ProgressComponent, data: {titulo: 'Progreso'} },
     { path: 'graphics1', component: Graphics1Component, data: {titulo: 'Graficas'} },
     { path: 'promises', component: PromisesComponent, data: {titulo: 'Promesas'}},

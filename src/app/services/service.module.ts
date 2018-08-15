@@ -12,7 +12,8 @@ import {
   UploadFileService,
   HospitalService,
   DoctorService,
-  AdminGuard
+  AdminGuard,
+  VerifyTokenGuard
 } from './service.index';
 
 
@@ -28,6 +29,7 @@ import {
     SidebarService,
     SettingsService,
     AuthGuard,
+    VerifyTokenGuard,
     UploadFileService,
     ModalUploadService,
     HospitalService,

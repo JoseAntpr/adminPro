@@ -1,3 +1,5 @@
+export { VerifyTokenGuard } from './guards/verify-token.guard';
+
 export { DoctorService } from './doctor.service';
 
 export { HospitalService } from './hospital/hospital.service';
