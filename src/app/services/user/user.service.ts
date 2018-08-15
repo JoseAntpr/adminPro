@@ -25,6 +25,23 @@ export class UserService {
     this.loadStorage();
    }
 
+  renovateToken () {
+    const url = URL_SERVICE + '/login/updateToken?token=' + this.token;
+
+    return this.http.get( url )
+              .pipe(
+                map((resp: any) => {
+                  this.token = resp.token;
+                  localStorage.setItem('token', this.token);
+                  return true;
+                }),
+                catchError( err => {
+                  swal('No se pudo renovar token', 'No se pudo renovar token', 'error');
+                  return Observable.throw( err );
+                })
+              );
+  }
+
   isAuthenticated () {
     return ( this.token.length > 5 ) ? true : false;
   }
