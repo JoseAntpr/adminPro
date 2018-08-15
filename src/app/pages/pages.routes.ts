@@ -19,34 +19,25 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 
 
 const pagesRoutes: Routes = [
-  {
-    path: '',
-    component: PagesComponent,
-    canActivate: [ AuthGuard ],
-    children: [
-      { path: 'dashboard', component: DashboardComponent, data: {titulo: 'Dashboard'} },
-      { path: 'progress', component: ProgressComponent, data: {titulo: 'Progreso'} },
-      { path: 'graphics1', component: Graphics1Component, data: {titulo: 'Graficas'} },
-      { path: 'promises', component: PromisesComponent, data: {titulo: 'Promesas'}},
-      { path: 'rxjs', component: RxjsComponent, data: {titulo: 'RxJs'} },
-      { path: 'account', component: AccountSettingsComponent , data: {titulo: 'Ajustes'}},
-      { path: 'profile', component: ProfileComponent , data: {titulo: 'Perfil de usuario'}},
-      { path: 'search/:term', component: BusquedaComponent, data: {titulo: 'Buscador'}},
-
-      // Mantenimientos
-      {
+    { path: 'dashboard', component: DashboardComponent, data: {titulo: 'Dashboard'} },
+    { path: 'progress', component: ProgressComponent, data: {titulo: 'Progreso'} },
+    { path: 'graphics1', component: Graphics1Component, data: {titulo: 'Graficas'} },
+    { path: 'promises', component: PromisesComponent, data: {titulo: 'Promesas'}},
+    { path: 'rxjs', component: RxjsComponent, data: {titulo: 'RxJs'} },
+    { path: 'account', component: AccountSettingsComponent , data: {titulo: 'Ajustes'}},
+    { path: 'profile', component: ProfileComponent , data: {titulo: 'Perfil de usuario'}},
+    { path: 'search/:term', component: BusquedaComponent, data: {titulo: 'Buscador'}},
+    // Mantenimientos
+    {
         path: 'usuarios',
         component: UsuariosComponent,
         canActivate: [ AdminGuard ],
         data: {titulo: 'Mantenimiento de usuario'}
-      },
-      { path: 'hospitals', component: HospitalsComponent, data: {titulo: 'Mantenimiento de hospitales'}},
-      { path: 'doctors', component: DoctorsComponent, data: {titulo: 'Mantenimiento de medicos'}},
-      { path: 'doctor/:id', component: DoctorComponent, data: {titulo: 'Actualizar médico'}},
-      { path: '', pathMatch: 'full', redirectTo: '/dashboard' },
-    ]
-  },
-
+    },
+    { path: 'hospitals', component: HospitalsComponent, data: {titulo: 'Mantenimiento de hospitales'}},
+    { path: 'doctors', component: DoctorsComponent, data: {titulo: 'Mantenimiento de medicos'}},
+    { path: 'doctor/:id', component: DoctorComponent, data: {titulo: 'Actualizar médico'}},
+    { path: '', pathMatch: 'full', redirectTo: '/dashboard' },
 ];
 
 @NgModule({

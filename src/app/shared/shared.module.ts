@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { Page404Component } from './page404/page404.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 
 @NgModule({
   imports: [
@@ -20,13 +21,15 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
     HeaderComponent,
     Page404Component,
     SidebarComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    ModalUploadComponent,
   ],
   exports: [
     HeaderComponent,
     Page404Component,
     SidebarComponent,
     BreadcrumbsComponent,
+    ModalUploadComponent,
   ]
 })
 export class SharedModule { }

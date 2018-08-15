@@ -10,7 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graphics1Component } from './graphics1/graphics1.component';
-import { PagesComponent } from './pages.component';
+
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 // Pipes Module
@@ -29,18 +29,11 @@ import { DoctorsComponent } from './doctors/doctors.component';
 import { DoctorComponent } from './doctors/doctor.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 
-
-
-
-
-
-
 @NgModule({
   declarations: [
     DashboardComponent,
     ProgressComponent,
     Graphics1Component,
-    PagesComponent,
     IncrementComponent,
     DoughnutCharComponent,
     AccountSettingsComponent,
@@ -48,7 +41,6 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     RxjsComponent,
     ProfileComponent,
     UsuariosComponent,
-    ModalUploadComponent,
     HospitalsComponent,
     DoctorsComponent,
     DoctorComponent,
@@ -58,7 +50,6 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     DashboardComponent,
     ProgressComponent,
     Graphics1Component,
-    PagesComponent,
     IncrementComponent,
     DoughnutCharComponent,
     AccountSettingsComponent
